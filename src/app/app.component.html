@@ -1,32 +1,31 @@
-
-<mat-table [dataSource]="assets$ | async">
+<mat-table [dataSource]="assets$" matSort>
   <!-- Id Definition -->
   <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef> Id  </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header (click)="sortAssetsAssetsById()">Id</mat-header-cell>
     <mat-cell *matCellDef="let elem"> {{elem.id}} </mat-cell>
   </ng-container>
 
   <!-- Asset Name Definition -->
   <ng-container matColumnDef="assetName">
-    <mat-header-cell *matHeaderCellDef> Asset Name </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Asset Name </mat-header-cell>
     <mat-cell *matCellDef="let elem"> {{elem.assetName}} </mat-cell>
   </ng-container>
 
   <!-- Price Definition -->
   <ng-container matColumnDef="price">
-    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
     <mat-cell *matCellDef="let elem"> {{elem.price}} </mat-cell>
   </ng-container>
 
   <!-- Last Update Definition -->
   <ng-container matColumnDef="lastUpdate">
-    <mat-header-cell *matHeaderCellDef> Last Update </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
     <mat-cell *matCellDef="let elem"> {{elem.lastUpdate}} </mat-cell>
   </ng-container>
 
   <!-- Asset Type Definition -->
   <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef> Asset Type </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Asset Type </mat-header-cell>
     <mat-cell *matCellDef="let elem"> {{elem.type}} </mat-cell>
   </ng-container>
 

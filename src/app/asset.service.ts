@@ -41,10 +41,11 @@ export class AssetService {
         interval(1000).subscribe(() => {
           return this.initialAssets$.pipe(
             map(val => {
+              let val2 = { ...val }; 
               const random = Math.random();
-              val.price = random >= 0.5 ? val.price + random : val.price - random;
-              val.lastUpdate = Date.now();
-              return val;
+              val2.price = random >= 0.5 ? val.price + random : val.price - random;
+              val2.lastUpdate = Date.now();
+              return val2;
             })
           ).subscribe(val => ob.next(val));
         });

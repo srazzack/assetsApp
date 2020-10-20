@@ -14,8 +14,12 @@ const initialAssets: Asset[] = [
 
 export const assetsReducer = createReducer<Asset[]>(initialAssets,
   on(createAsset, (state, action) => {
-    console.log(action.asset);
-    console.log({ ...state, [action.asset.id]: { ...state[action.asset.id], ...action.asset }});
-    return { ...state, [action.asset.id]: { ...state[action.asset.id], ...action.asset }};
+    if (state[action.asset.id]) {
+      const newAssets = state.concat();
+      newAssets[newAssets.findIndex(asset => asset.id === action.asset.id)] = action.asset;
+      return newAssets;
+    } else {
+      return state.concat({ ...action.asset })
+    }
   })
 );
