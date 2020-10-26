@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { AssetService } from './asset.service';
 import * as _ from 'lodash';
 import { Store, select } from '@ngrx/store';
-import { createAsset } from './actions/asset.actions';
+import { createAsset, filterAssets } from './actions/asset.actions';
 import { AppState } from './app.state';
+import { filter } from 'rxjs/operators';
+import { Asset } from './models/asset';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { AppState } from './app.state';
 })
 export class AppComponent  {
    public assets$ = this.store.pipe(select('assets'));
-
+   public searchQuery: string;
   constructor(
     private assetService: AssetService,
     private store: Store<AppState>,
@@ -22,5 +24,9 @@ export class AppComponent  {
       .subscribe((asset) => {
         this.store.dispatch(createAsset({ asset }));
       });
+  }
+
+  public filterAssets(searchQuery) {
+    this.store.dispatch(filterAssets({ searchQuery }));
   }
 }

@@ -1,3 +1,9 @@
+
+
+<section>
+  <h4>Search Your Assets</h4>
+  <input type="text" (change)="filterAssets($event.target.value)">
+</section>
 <mat-table [dataSource]="assets$" matSort>
   <!-- Id Definition -->
   <ng-container matColumnDef="id">
@@ -14,13 +20,13 @@
   <!-- Price Definition -->
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-    <mat-cell *matCellDef="let elem"> {{elem.price}} </mat-cell>
+    <mat-cell *matCellDef="let elem"> {{elem.price | currency:'USD' }} </mat-cell>
   </ng-container>
 
   <!-- Last Update Definition -->
   <ng-container matColumnDef="lastUpdate">
     <mat-header-cell *matHeaderCellDef mat-sort-header> Last Update </mat-header-cell>
-    <mat-cell *matCellDef="let elem"> {{elem.lastUpdate}} </mat-cell>
+    <mat-cell *matCellDef="let elem"> {{elem.lastUpdate | date:'medium' }} </mat-cell>
   </ng-container>
 
   <!-- Asset Type Definition -->

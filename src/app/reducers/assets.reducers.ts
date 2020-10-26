@@ -1,4 +1,4 @@
-import { createAsset } from '../actions/asset.actions';
+import { createAsset, filterAssets } from '../actions/asset.actions';
 import { createReducer, on } from '@ngrx/store';
 import { Asset } from '../models/asset';
 
@@ -21,5 +21,11 @@ export const assetsReducer = createReducer<Asset[]>(initialAssets,
     } else {
       return state.concat({ ...action.asset })
     }
+  }),
+  on(filterAssets, (state, action) => {
+    return state.filter((elem) => {
+      const searchQuery = action.searchQuery;
+        return elem.id === searchQuery || elem.assetName.includes(searchQuery) || elem.type.includes(searchQuery);
+      });
   })
 );
